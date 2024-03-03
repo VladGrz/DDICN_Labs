@@ -33,7 +33,7 @@ pipeline {
                 } catch (err) {
                     echo "Could not run a container. Trying to remove existing one and rerun"
                     currentBuild.result = 'UNSTABLE'
-                    sh "docker rm -f $(docker ps -aq)"
+                    sh 'docker rm -f $(docker ps -aq)'
                     sh "docker run -d -p 80:80 nginx/custom:latest"
                 }
             }
