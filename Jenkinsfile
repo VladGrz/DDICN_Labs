@@ -8,6 +8,12 @@ pipeline {
             }
         }
 
+        stage('Checkout Code') {
+            steps {
+                git branch: 'Lab_2', url: 'https://github.com/VladGrz/DDICN_Labs.git'
+            }
+        }
+
         stage('Image build') {
             steps {
                 sh "docker build -t ddicn:latest ."
@@ -22,6 +28,12 @@ pipeline {
                     sh "docker push vladgrz/ddicn:latest"
                     sh "docker push vladgrz/ddicn:$BUILD_NUMBER"
                 }
+            }
+        }
+
+        stage('Test nginx/custom') {
+            steps {
+                sh 'docker run -v $WORKSPACE:/app ladgrz/ddicn -c "cat /app/index.html"'
             }
         }
 
