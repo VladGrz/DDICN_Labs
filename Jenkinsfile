@@ -33,7 +33,7 @@ pipeline {
 
         stage('Test nginx/custom') {
             steps {
-                sh 'docker run -v $WORKSPACE:/app ladgrz/ddicn -c "cat /app/index.html"'
+                sh 'docker run -v $WORKSPACE:/app vladgrz/ddicn -c "cat /app/index.html"'
             }
         }
 
