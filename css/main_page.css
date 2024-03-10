@@ -1,0 +1,19 @@
+.title {
+	color: #3d5;
+	text-align: center;
+	margin: 100px 0px 50px 10px;
+}
+
+.add_message {
+	text-align: center;
+}
+
+.add_message input{
+	margin-top: 20px;
+	font-size: 15pt;
+}
+
+.add_message label{
+	color: #3d1;
+	font-size: 15pt;
+}
