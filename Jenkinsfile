@@ -4,33 +4,32 @@ pipeline {
     stages {
         stage('Start') {
             steps {
-                echo 'Lab_1: nginx/custom'
+                echo 'Lab_2: started by GitHub'
             }
         }
 
-        stage('Checkout Code') {
+        stage('Image build') {
             steps {
-                git branch: 'Lab_1', url: 'https://github.com/VladGrz/DDICN_Labs.git'
+                sh "docker build -t ddicn:latest ."
+                sh "docker tag ddicn vladgrz/ddicn:latest"
+                sh "docker tag ddicn vladgrz/ddicn:$BUILD_NUMBER"
             }
         }
 
-        stage('Build nginx/custom') {
+        stage('Push to registry') {
             steps {
-                sh 'docker build -t nginx/custom:latest .'
+                withDockerRegistry([ credentialsId: "dockerhub_token", url: "" ]) {
+                    sh "docker push vladgrz/ddicn:latest"
+                    sh "docker push vladgrz/ddicn:$BUILD_NUMBER"
+                }
             }
         }
 
-        stage('Test nginx/custom') {
-            steps {
-                sh 'docker run -v $WORKSPACE:/app nginx/custom:latest sh -c "cat /app/index.html"'
-            }
-        }
-
-        stage('Deploy nginx/custom'){
+        stage('Deploy image'){
             steps{
                 script {
                     try { 
-                        sh "docker run -d -p 80:80 nginx/custom:latest"
+                        sh "docker run -d -p 80:80 vladgrz/ddicn"
                     } catch (err) {
                         echo "Could not run a container. Trying to remove existing one and rerun"
                         currentBuild.result = 'UNSTABLE'
