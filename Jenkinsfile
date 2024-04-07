@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    properties {
+    options {
         office365ConnectorWebhooks {
             webhooks {
                 webhook {
