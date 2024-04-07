@@ -2,23 +2,18 @@ pipeline {
     agent any
 
     options {
-        office365ConnectorWebhooks {
-            webhooks {
-                webhook {
-                    name('Slack-O365')
-                    url('https://hooks.slack.com/services/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')
-                    startNotification(false)
-                    notifySuccess(true)
-                    notifyAborted(false)
-                    notifyNotBuilt(false)
-                    notifyUnstable(true)
-                    notifyFailure(true)
-                    notifyBackToNormal(true)
-                    notifyRepeatedFailure(false)
-                    timeout(30000)
-                }
-            }
-        }
+        office365ConnectorWebhooks([[
+            name: "Slack-notifier",
+            startNotification: false,
+            notifySuccess: true,
+            notifyAborted: false,
+            notifyNotBuilt: false,
+            notifyUnstable: true,
+            notifyFailure: true,
+            notifyBackToNormal: true,
+            notifyRepeatedFailure: false,
+            url: "https://hooks.slack.com/services/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",
+        ]])
     }
 
     stages {
