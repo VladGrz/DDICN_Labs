@@ -4,6 +4,7 @@ pipeline {
     options {
         office365ConnectorWebhooks([[
             name: "Slack-notifier",
+            message: "Something is happening with pipeline",
             startNotification: false,
             notifySuccess: true,
             notifyAborted: false,
