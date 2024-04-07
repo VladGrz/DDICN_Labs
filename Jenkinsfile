@@ -4,6 +4,7 @@ pipeline {
     options {
         office365ConnectorWebhooks([[
             name: "Slack-notifier",
+            url: "${SLACK_WEBHOOK_URL}"
             message: "Something is happening with pipeline",
             startNotification: false,
             notifySuccess: true,
@@ -58,7 +59,8 @@ pipeline {
                     try { 
                         sh "docker run -d -p 80:80 vladgrz/ddicn"
                     } catch (err) {
-                        office365ConnectorSend message: 'Catched an error when deploying an image. Check'
+                        office365ConnectorSend webhookUrl: "${SLACK_WEBHOOK_URL}", 
+                            message: 'Catched an error when deploying an image. Check'
                         echo "Could not run a container. Trying to remove existing one and rerun"
                         currentBuild.result = 'UNSTABLE'
                         sh 'docker rm -f $(docker ps -aq)'
