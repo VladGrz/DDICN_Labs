@@ -13,7 +13,6 @@ pipeline {
             notifyFailure: true,
             notifyBackToNormal: true,
             notifyRepeatedFailure: false,
-            url: "https://hooks.slack.com/services/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",
         ]])
     }
 
@@ -59,8 +58,7 @@ pipeline {
                     try { 
                         sh "docker run -d -p 80:80 vladgrz/ddicn"
                     } catch (err) {
-                        office365ConnectorSend webhookUrl: 'https://hooks.slack.com/services/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',
-                            message: 'Catched an error when deploying an image. Check'
+                        office365ConnectorSend message: 'Catched an error when deploying an image. Check'
                         echo "Could not run a container. Trying to remove existing one and rerun"
                         currentBuild.result = 'UNSTABLE'
                         sh 'docker rm -f $(docker ps -aq)'
