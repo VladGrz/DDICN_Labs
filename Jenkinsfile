@@ -61,6 +61,7 @@ pipeline {
                     } catch (err) {
                         office365ConnectorSend webhookUrl: "${TEAMS_WEBHOOK_URL}", 
                             message: "Catched an error when deploying an image. Check ${env.BUILD_URL}"
+                        slackSend channel: "labs", message: "Catched an error when deploying an image. Check ${env.BUILD_URL}"
                         echo "Could not run a container. Trying to remove existing one and rerun"
                         currentBuild.result = 'UNSTABLE'
                         sh 'docker rm -f $(docker ps -aq)'
