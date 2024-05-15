@@ -5,7 +5,7 @@ ENV JENKINS_PASS admin
 
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 COPY plugins.txt /usr/share/jenkins/plugins.txt
-RUN jenkins-plugin-cli --plugins $(< /usr/share/jenkins/plugins.txt)
+RUN jenkins-plugin-cli --plugins $(cat /usr/share/jenkins/plugins.txt)
 COPY config.xml /usr/share/jenkins/ref/jobs/hello_world/config.xml
 USER root
 RUN apt-get update && apt-get install -qqy apt-transport-https ca-certificates curl gnupg2 software-properties-common
