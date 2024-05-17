@@ -20,13 +20,13 @@ pipeline {
     stages {
         stage('Start') {
             steps {
-                echo 'Lab_2: started by GitHub'
+                echo 'Lab_3: started by GitHub'
             }
         }
 
         stage('Checkout Code') {
             steps {
-                git branch: 'Lab_2', url: 'https://github.com/VladGrz/DDICN_Labs.git'
+                git branch: 'Lab_3', url: 'https://github.com/VladGrz/DDICN_Labs.git'
             }
         }
 
