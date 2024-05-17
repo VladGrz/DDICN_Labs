@@ -1,0 +1,67 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@1415.v4f9c9131248b_">
+<actions>
+<org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction plugin="pipeline-model-definition@2.2198.v41dd8ef6dd56"/>
+<org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@2.2198.v41dd8ef6dd56">
+<jobProperties>
+<string>jenkins.plugins.office365connector.WebhookJobProperty</string>
+</jobProperties>
+<triggers/>
+<parameters/>
+<options/>
+</org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
+</actions>
+<description>This is my Job</description>
+<keepDependencies>false</keepDependencies>
+<properties>
+<org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+<triggers>
+<hudson.triggers.TimerTrigger>
+<spec>H/3 * * * *</spec>
+</hudson.triggers.TimerTrigger>
+</triggers>
+</org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+<jenkins.plugins.office365connector.WebhookJobProperty plugin="Office-365-Connector@4.21.1">
+<webhooks>
+<jenkins.plugins.office365connector.Webhook>
+<name>Teams-notifier</name>
+<url>https://lpnu.webhook.office.com/webhookb2/e12acf2b-4990-4a48-9d22-ae148dbdab56@7631cd62-5187-4e15-8b8e-ef653e366e7a/IncomingWebhook/0450ac17bacd4b9598de3c74743b7fe8/de62a151-99fc-460c-9b95-e2319c481cda</url>
+<startNotification>false</startNotification>
+<notifySuccess>true</notifySuccess>
+<notifyAborted>false</notifyAborted>
+<notifyNotBuilt>false</notifyNotBuilt>
+<notifyUnstable>true</notifyUnstable>
+<notifyFailure>true</notifyFailure>
+<notifyBackToNormal>true</notifyBackToNormal>
+<notifyRepeatedFailure>false</notifyRepeatedFailure>
+<timeout>0</timeout>
+<macros class="empty-list"/>
+<factDefinitions class="empty-list"/>
+</jenkins.plugins.office365connector.Webhook>
+</webhooks>
+</jenkins.plugins.office365connector.WebhookJobProperty>
+</properties>
+<definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@3894.3896.vca_2c931e7935">
+<scm class="hudson.plugins.git.GitSCM" plugin="git@5.2.2">
+<configVersion>2</configVersion>
+<userRemoteConfigs>
+<hudson.plugins.git.UserRemoteConfig>
+<url>https://github.com/VladGrz/DDICN_Labs</url>
+<credentialsId>dockerhub_token</credentialsId>
+</hudson.plugins.git.UserRemoteConfig>
+</userRemoteConfigs>
+<branches>
+<hudson.plugins.git.BranchSpec>
+<name>*/Lab_3</name>
+</hudson.plugins.git.BranchSpec>
+</branches>
+<doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+<submoduleCfg class="empty-list"/>
+<extensions/>
+</scm>
+<scriptPath>Jenkinsfile</scriptPath>
+<lightweight>true</lightweight>
+</definition>
+<triggers/>
+<disabled>false</disabled>
+</flow-definition>

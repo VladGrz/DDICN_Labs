@@ -1,0 +1,26 @@
+<flow-definition plugin="workflow-job@1415.v4f9c9131248b_">
+<description>This is my second Job. It checks the Internet connection</description>
+<keepDependencies>false</keepDependencies>
+<properties>
+<org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+<triggers>
+<jenkins.triggers.ReverseBuildTrigger>
+<spec/>
+<upstreamProjects>hello_world</upstreamProjects>
+<threshold>
+<name>UNSTABLE</name>
+<ordinal>1</ordinal>
+<color>YELLOW</color>
+<completeBuild>true</completeBuild>
+</threshold>
+</jenkins.triggers.ReverseBuildTrigger>
+</triggers>
+</org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+</properties>
+<definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@3894.3896.vca_2c931e7935">
+<script>echo "Hello human!"</script>
+<sandbox>true</sandbox>
+</definition>
+<triggers/>
+<disabled>false</disabled>
+</flow-definition>
