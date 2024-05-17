@@ -40,6 +40,15 @@
 </jenkins.plugins.office365connector.Webhook>
 </webhooks>
 </jenkins.plugins.office365connector.WebhookJobProperty>
+<hudson.model.ParametersDefinitionProperty>
+<parameterDefinitions>
+<hudson.model.StringParameterDefinition>
+<name>TEAMS_WEBHOOK_URL</name>
+<defaultValue>https://lpnu.webhook.office.com/webhookb2/e12acf2b-4990-4a48-9d22-ae148dbdab56@7631cd62-5187-4e15-8b8e-ef653e366e7a/IncomingWebhook/0450ac17bacd4b9598de3c74743b7fe8/de62a151-99fc-460c-9b95-e2319c481cda</defaultValue>
+<trim>false</trim>
+</hudson.model.StringParameterDefinition>
+</parameterDefinitions>
+</hudson.model.ParametersDefinitionProperty>
 </properties>
 <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@3894.3896.vca_2c931e7935">
 <scm class="hudson.plugins.git.GitSCM" plugin="git@5.2.2">
@@ -52,7 +61,7 @@
 </userRemoteConfigs>
 <branches>
 <hudson.plugins.git.BranchSpec>
-<name>*/Lab_3</name>
+<name>*/Lab_5</name>
 </hudson.plugins.git.BranchSpec>
 </branches>
 <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>

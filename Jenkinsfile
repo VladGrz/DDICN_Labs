@@ -24,7 +24,7 @@ pipeline {
 
         stage('Test notification'){
             steps {
-                office365ConnectorSend message: "Catched an error when deploying an image. Check ${env.BUILD_URL}"
+                office365ConnectorSend webhookUrl: "${TEAMS_WEBHOOK_URL}" message: "Catched an error when deploying an image. Check ${env.BUILD_URL}"
             }
         }
     }
