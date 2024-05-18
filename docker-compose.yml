@@ -50,9 +50,11 @@ services:
     links:
       - prometheus:prometheus
     volumes:
+      - grafana_storage:/var/lib/grafana
       - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
     ports:
       - 3000:3000
 volumes:
   jenkins_data:
+  grafana_storage:
