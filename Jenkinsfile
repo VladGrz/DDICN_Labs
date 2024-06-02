@@ -4,13 +4,13 @@ pipeline {
     stages {
         stage('Start') {
             steps {
-                echo 'Lab_7: started by Cron'
+                echo 'Labs_merged: started by GitHub'
             }
         }
 
         stage('Checkout Code') {
             steps {
-                git branch: 'Lab_5', url: 'https://github.com/VladGrz/DDICN_Labs.git'
+                git branch: 'main', url: 'https://github.com/VladGrz/DDICN_Labs.git'
             }
         }
 
