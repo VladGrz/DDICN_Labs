@@ -1,0 +1,8 @@
+cvs:2.19.1
+docker-plugin:1.6.1
+git:5.2.2
+prometheus:763.vf8c26b_a_34b_d6
+gitlab-plugin:1.8.1
+workflow-basic-steps:1058.vcb_fc1e3a_21a_9
+pipeline-model-definition
+Office-365-Connector
