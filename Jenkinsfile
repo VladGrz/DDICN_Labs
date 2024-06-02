@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Start') {
             steps {
-                echo 'Lab_5: started by Cron'
+                echo 'Lab_7: started by Cron'
             }
         }
 
