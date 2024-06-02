@@ -4,40 +4,27 @@ pipeline {
     stages {
         stage('Start') {
             steps {
-                echo 'Lab_1: nginx/custom'
+                echo 'Lab_7: started by Cron'
             }
         }
 
         stage('Checkout Code') {
             steps {
-                git branch: 'Lab_1', url: 'https://github.com/VladGrz/DDICN_Labs.git'
+                git branch: 'Lab_5', url: 'https://github.com/VladGrz/DDICN_Labs.git'
             }
         }
 
-        stage('Build nginx/custom') {
+	
+
+        stage('Test') {
             steps {
-                sh 'docker build -t nginx/custom:latest .'
+                sh 'echo "Doing something"'
             }
         }
 
-        stage('Test nginx/custom') {
+        stage('Test notification'){
             steps {
-                sh 'docker run -v $WORKSPACE:/app nginx/custom:latest sh -c "cat /app/index.html"'
-            }
-        }
-
-        stage('Deploy nginx/custom'){
-            steps{
-                script {
-                    try { 
-                        sh "docker run -d -p 80:80 nginx/custom:latest"
-                    } catch (err) {
-                        echo "Could not run a container. Trying to remove existing one and rerun"
-                        currentBuild.result = 'UNSTABLE'
-                        sh 'docker rm -f $(docker ps -aq)'
-                        sh "docker run -d -p 80:80 nginx/custom:latest"
-                    }
-                }
+                office365ConnectorSend webhookUrl: "${TEAMS_WEBHOOK_URL}", message: "Catched an error when deploying an image. Check ${env.BUILD_URL}"
             }
         }
     }
